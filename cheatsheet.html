@@ -245,6 +245,22 @@
         <li><a href="#section22">22. Activation Functions</a></li>
         <li><a href="#section23">23. Probability and Statistics in Machine Learning</a></li>
         <li><a href="#section24">24. Optimization Techniques</a></li>
+        <li><a href="#section25">25. Trigonometric Functions</a></li>
+        <li><a href="#section26">Basic Introduction</a></li>
+        <li><a href="#section27">27. Superscript Notation (i) and [l]</a></li>
+        <li><a href="#section28">28. Size Notations (m, nx, ny, n[l]h, L)</a></li>
+        <li><a href="#section29">29. Matrix and Vector Notations (X, x(i), Y, y(i), W[l], b[l], ŷ)</a></li>
+        <li><a href="#section30">30. Activation Functions and Forward Propagation</a></li>
+        <li><a href="#section31">31. Cost Functions J(x, W, b, y) or J(ŷ, y)</a></li>
+        <li><a href="#section32">32. Jacobian Matrix (J)</a></li>
+        <li><a href="#section33">33. Hessian Matrix (H)</a></li>
+        <li><a href="#section34">34. Eigenvalues and Eigenvectors</a></li>
+        <li><a href="#section35">35. Matrix Inverses and Determinants</a></li>
+        <li><a href="#section36">36. L'Hôpital's Rule</a></li>
+        <li><a href="#section37">37. Implicit Differentiation</a></li>
+        <li><a href="#section38">38. Chain Rule</a></li>
+        <li><a href="#section39">39. Multivariable Calculus</a></li>
+        <li><a href="#section40">40. Big-O Notation (O)</a></li>
     </ul>
 </div>
 
@@ -266,11 +282,11 @@ i=1
 
     <h3>Complex Example: Sum of Natural Numbers</h3>
     <p><strong>Mathematical Notation:</strong></p>
-    <pre><code>
- n
- Σ i = n(n + 1) / 2
-i=1
-    </code></pre>
+<pre><code>
+    n
+   Σ  i = 1 + 2 + ... + n = n(n + 1) / 2
+   i=1
+</code></pre>
 
     <p><strong>Meaning:</strong> The sum of integers from 1 to n.</p>
 
@@ -365,15 +381,14 @@ unsigned long long factorial(int n) {
 
     <p><strong>C Implementation:</strong></p>
     <pre><code>
-#include <math.h>
+#include &lt;math.h&gt;
 
 double square_root(double x) {
     return sqrt(x);
 }
-    </code></pre>
-
-    <h3>Newton's Method for Square Root</h3>
-    <pre><code>
+<h3>Newton's Method for Square Root</h3>
+<p>Newton's method is an iterative process for finding approximations to the square root of a number. This can be particularly useful when you need more control over precision or when a built-in square root function is not available.</p>
+<pre><code>
 double sqrt_newton(double x, int iterations) {
     double guess = x / 2.0;
     for (int i = 0; i < iterations; i++) {
@@ -381,7 +396,7 @@ double sqrt_newton(double x, int iterations) {
     }
     return guess;
 }
-    </code></pre>
+</code></pre>
 </div>
 
 <div class="section" id="section4">
@@ -390,11 +405,11 @@ double sqrt_newton(double x, int iterations) {
     <p>The ∫ symbol represents integration in calculus. It can be thought of as the opposite of differentiation and is often used to calculate areas under curves.</p>
 
     <h3>Simple Example</h3>
-    <pre><code>
- 1
- ∫ x dx = [x²/2] from 0 to 1 = 1/2
- 0
-    </code></pre>
+<pre><code>
+      1
+   ∫  x dx = [x²/2] from 0 to 1 = 1/2
+      0
+</code></pre>
     <p>This calculates the area under the curve y = x from x = 0 to x = 1.</p>
 
     <h3>Advanced Explanation</h3>
@@ -499,7 +514,7 @@ int result = for_all(my_array, array_size, is_positive);
 
     <p><strong>C Implementation (using a simple array):</strong></p>
     <pre><code>
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 
 void print_set(int* set, int size) {
     printf("{");
@@ -555,7 +570,7 @@ int result = is_element_of(3, my_set, 5);  // Returns 1 (true)
 
     <p><strong>C Implementation (conceptual):</strong></p>
     <pre><code>
-#include <stdlib.h>
+#include &lt;stdlib.h&gt;
 
 int* build_set(int max, int (*property)(int), int* size) {
     int* set = malloc(max * sizeof(int));
@@ -615,7 +630,7 @@ int result = is_subset(setA, 2, setB, 4);  // Returns 1 (true)
 
     <p><strong>C Implementation:</strong></p>
     <pre><code>
-#include <stdlib.h>
+#include &lt;stdlib.h&gt;
 
 int* union_sets(int* setA, int sizeA, int* setB, int sizeB, int* sizeResult) {
     int* result = malloc((sizeA + sizeB) * sizeof(int));
@@ -735,7 +750,7 @@ Vector2D gradient(double (*f)(double, double), double x, double y, double h) {
 
     <p><strong>C Implementation:</strong></p>
     <pre><code>
-#include <math.h>
+#include &lt;math.h&gt;
 
 int approximately_equal(double a, double b, double epsilon) {
     return fabs(a - b) < epsilon;
@@ -756,7 +771,7 @@ int approximately_equal(double a, double b, double epsilon) {
 
     <p><strong>C Implementation (representation using limits):</strong></p>
     <pre><code>
-#include <float.h>
+#include &lt;float.h&gt;
 
 #define INFINITY DBL_MAX
 
@@ -848,8 +863,8 @@ Matrix operations like addition, multiplication, and transposition are crucial i
 
     <h3>C Implementation (basic matrix operations)</h3>
     <pre><code>
-#include <stdio.h>
-#include <stdlib.h>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 typedef struct {
     int rows, cols;
@@ -881,6 +896,17 @@ Matrix matrix_multiply(Matrix A, Matrix B) {
 }
 
 // Other operations like addition, transposition can be implemented similarly
+void free_matrix(Matrix m) {
+    for (int i = 0; i < m.rows; i++) {
+        free(m.data[i]);
+    }
+    free(m.data);
+}
+
+// Usage example
+Matrix A = create_matrix(2, 3);
+// Use matrix A for operations...
+free_matrix(A); // Remember to free the memory
     </code></pre>
 </div>
 
@@ -928,7 +954,7 @@ void gradient_descent(double *w, double *b, double learning_rate, int iterations
 
     <h3>C Implementation (activation functions)</h3>
     <pre><code>
-#include <math.h>
+#include &lt;math.h&gt;
 
 double sigmoid(double x) {
     return 1.0 / (1.0 + exp(-x));
@@ -1005,6 +1031,792 @@ void sgd(double *w, double *x, double y, double learning_rate, int features) {
 }
     </code></pre>
 </div>
+<div id="section25" class="section">
+    <h2>25. Trigonometric Functions</h2>
+    <h3>Basic Introduction</h3>
+    <p>Trigonometric functions are fundamental in mathematics and have numerous applications in computer science, particularly in graphics, physics simulations, and signal processing.</p>
+
+    <h3>Key Concepts</h3>
+    <ul>
+        <li>θ (theta): Represents an angle in radians or degrees</li>
+        <li>sin(θ): Sine function</li>
+        <li>cos(θ): Cosine function</li>
+        <li>tan(θ): Tangent function</li>
+    </ul>
+
+    <h3>Advanced Explanation</h3>
+    <p>These functions describe the relationships between angles and the ratios of sides in right-angled triangles. They are periodic functions with various important properties used in wave analysis, rotation calculations, and more.</p>
+
+    <p>The symbol θ (theta) is commonly used to represent an angle. In trigonometry, angles are typically measured in radians, where 2π radians equal 360 degrees. However, many programming languages use degrees for input, so conversion between degrees and radians is often necessary.</p>
+
+    <div class="example">
+        <h4>Example: Angle Conversion and Trigonometric Calculations</h4>
+        <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+#define PI 3.14159265358979323846
+
+// Convert degrees to radians
+double deg_to_rad(double degrees) {
+    return degrees * PI / 180.0;
+}
+
+// Convert radians to degrees
+double rad_to_deg(double radians) {
+    return radians * 180.0 / PI;
+}
+
+int main() {
+    double angle_deg = 45.0;
+    double angle_rad = deg_to_rad(angle_deg);
+
+    printf("Angle: %.2f degrees = %.4f radians\n", angle_deg, angle_rad);
+    printf("sin(%.2f°) = %.4f\n", angle_deg, sin(angle_rad));
+    printf("cos(%.2f°) = %.4f\n", angle_deg, cos(angle_rad));
+    printf("tan(%.2f°) = %.4f\n", angle_deg, tan(angle_rad));
+
+    return 0;
+}
+        </code></pre>
+        <p>This example demonstrates angle conversion and basic trigonometric calculations. Note that C math functions expect angles in radians, so we convert from degrees to radians before calculation.</p>
+    </div>
+
+    <div class="example">
+        <h4>Example: Calculating points on a circle</h4>
+        <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+#define PI 3.14159265358979323846
+
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+Point point_on_circle(double radius, double angle_degrees) {
+    double angle_radians = angle_degrees * PI / 180.0;
+    Point p;
+    p.x = radius * cos(angle_radians);
+    p.y = radius * sin(angle_radians);
+    return p;
+}
+
+void print_points_on_circle(double radius, int num_points) {
+    printf("Points on a circle with radius %.2f:\n", radius);
+    for (int i = 0; i < num_points; i++) {
+        double angle = (360.0 / num_points) * i;
+        Point p = point_on_circle(radius, angle);
+        printf("  Angle: %.2f°, Point: (%.2f, %.2f)\n", angle, p.x, p.y);
+    }
+}
+
+int main() {
+    print_points_on_circle(5.0, 8);
+    return 0;
+}
+        </code></pre>
+        <p>This example calculates points on a circle using trigonometric functions. It demonstrates how sin(θ) and cos(θ) are used to convert polar coordinates (radius and angle) to Cartesian coordinates (x and y).</p>
+    </div>
+
+    <div class="application">
+        <h4>Application: 2D Rotation</h4>
+        <p>Trigonometric functions are crucial in computer graphics for rotating objects. Here's an improved example that rotates a set of points around the origin:</p>
+        <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+#define PI 3.14159265358979323846
+
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+void rotate_point(Point* p, double angle_degrees) {
+    double angle_radians = angle_degrees * PI / 180.0;
+    double x = p->x;
+    double y = p->y;
+    p->x = x * cos(angle_radians) - y * sin(angle_radians);
+    p->y = x * sin(angle_radians) + y * cos(angle_radians);
+}
+
+void print_point(Point p) {
+    printf("(%.2f, %.2f)", p.x, p.y);
+}
+
+int main() {
+    Point points[] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    int num_points = sizeof(points) / sizeof(points[0]);
+    double rotation_angle = 45.0;
+
+    printf("Original points:\n");
+    for (int i = 0; i < num_points; i++) {
+        print_point(points[i]);
+        printf("\n");
+    }
+
+    printf("\nRotating by %.2f degrees...\n\n", rotation_angle);
+
+    for (int i = 0; i < num_points; i++) {
+        rotate_point(&points[i], rotation_angle);
+    }
+
+    printf("Rotated points:\n");
+    for (int i = 0; i < num_points; i++) {
+        print_point(points[i]);
+        printf("\n");
+    }
+
+    return 0;
+}
+        </code></pre>
+        <p>This example demonstrates how to use trigonometric functions to rotate points around the origin. The rotation matrix used is derived from the following trigonometric identities:
+           <br>x' = x cos(θ) - y sin(θ)
+           <br>y' = x sin(θ) + y cos(θ)
+           <br>Where (x, y) is the original point, (x', y') is the rotated point, and θ is the rotation angle.</p>
+    </div>
+</div>
+
+    <div id="section26" class="section">
+        <h2>26. Euler's Formula</h2>
+        <h3>Basic Introduction</h3>
+        <p>Euler's formula, e<sup>ix</sup> = cos(x) + i sin(x), establishes a profound connection between exponential and trigonometric functions.</p>
+
+        <h3>Key Concept</h3>
+        <p>e<sup>iπ</sup> + 1 = 0</p>
+
+        <h3>Advanced Explanation</h3>
+        <p>This formula is fundamental in complex analysis and has applications in signal processing, particularly in Fourier transforms. It provides a way to represent rotations and periodic phenomena using complex exponentials.</p>
+
+        <div class="example">
+            <h4>Example: Complex number rotation</h4>
+            <pre><code>
+#include &lt;complex.h&gt;
+
+double complex rotate_complex(double complex z, double angle_degrees) {
+    double angle_radians = angle_degrees * M_PI / 180.0;
+    return z * cexp(I * angle_radians);
+}
+            </code></pre>
+        </div>
+
+        <div class="application">
+            <h4>Application: Signal Processing</h4>
+            <p>Euler's formula is crucial in the discrete Fourier transform:</p>
+            <pre><code>
+void dft(double complex* x, int N) {
+    for (int k = 0; k < N; k++) {
+        x[k] = 0;
+        for (int n = 0; n < N; n++) {
+            x[k] += x[n] * cexp(-2 * M_PI * I * k * n / N);
+        }
+    }
+}
+            </code></pre>
+
+<h3>Complex Numbers in Polar Form</h3>
+<p>A complex number can be represented in polar form as:</p>
+<pre><code>
+z = r * (cos(θ) + i * sin(θ))
+</code></pre>
+<p>Where:</p>
+<ul>
+    <li>r is the magnitude (distance from the origin)</li>
+    <li>θ (theta) is the angle formed with the positive real axis, known as the argument</li>
+</ul>
+<p>This form is useful for multiplying and dividing complex numbers, as it simplifies the calculation of products and quotients.</p>
+
+<p><strong>Example:</strong></p>
+<pre><code>
+double magnitude = cabs(z);
+double angle = carg(z);
+double complex polar_form = magnitude * (cos(angle) + I * sin(angle));
+</code></pre>
+        </div>
+    </div>
+<div id="section27" class="section">
+<h2>27. Superscript Notation (i) and [l]</h2>
+
+<h3>Basic Introduction</h3>
+<p>In machine learning notation:</p>
+<ul>
+    <li>Superscript (i) denotes the i-th training example</li>
+    <li>Superscript [l] denotes the l-th layer of a neural network</li>
+</ul>
+
+<h3>Advanced Explanation</h3>
+<p>This notation helps distinguish between different examples in a dataset and different layers in a neural network, which is crucial for understanding the flow of data and computations.</p>
+
+<h3>C Implementation</h3>
+<pre><code class="language-c">
+typedef struct {
+    double* features;
+    double label;
+} Example;
+
+typedef struct {
+    double** weights;
+    double* biases;
+    int units;
+} Layer;
+
+// Usage
+Example training_example[m];  // m examples
+Layer network[L];  // L layers
+
+// Accessing i-th example, l-th layer
+double feature_j_of_example_i = training_example[i].features[j];
+double weight_jk_of_layer_l = network[l].weights[j][k];
+</code></pre>
+</div>
+
+<div id="section28" class="section">
+<h2>28. Size Notations (m, nx, ny, n[l]h, L)</h2>
+
+<h3>Basic Introduction</h3>
+<ul>
+    <li>m: number of examples in the dataset</li>
+    <li>nx: input size</li>
+    <li>ny: output size (or number of classes)</li>
+    <li>n[l]h: number of hidden units of the l-th layer</li>
+    <li>L: number of layers in the network</li>
+</ul>
+
+<h3>Advanced Explanation</h3>
+<p>These notations help define the structure of the neural network and the dataset. They're crucial for setting up the correct dimensions of weight matrices and bias vectors.</p>
+
+<h3>C Implementation</h3>
+<pre><code class="language-c">
+#define M 1000  // Number of examples
+#define NX 784  // Input size (e.g., for MNIST)
+#define NY 10   // Output size (e.g., 10 classes for MNIST)
+#define L 3     // Number of layers
+
+int n_h[L] = {128, 64, NY};  // Hidden units per layer
+</code></pre>
+</div>
+
+<div id="section29" class="section">
+<h2>29. Matrix and Vector Notations (X, x(i), Y, y(i), W[l], b[l], ŷ)</h2>
+
+<h3>Basic Introduction</h3>
+<ul>
+    <li>X ∈ R^(nx×m): input matrix</li>
+    <li>x(i) ∈ R^nx: i-th example as a column vector</li>
+    <li>Y ∈ R^(ny×m): label matrix</li>
+    <li>y(i) ∈ R^ny: output label for the i-th example</li>
+    <li>W[l]: weight matrix of layer l</li>
+    <li>b[l]: bias vector of layer l</li>
+    <li>ŷ: predicted output vector</li>
+</ul>
+
+<h3>Advanced Explanation</h3>
+<p>These notations represent the core data structures in a neural network. The input matrix X contains all training examples, while Y contains their corresponding labels. W[l] and b[l] are the learnable parameters of the network.</p>
+
+<h3>C Implementation</h3>
+<pre><code class="language-c">
+#include &lt;stdlib.h&gt;
+
+double** allocate_2d_array(int rows, int cols) {
+    double** array = malloc(rows * sizeof(double*));
+    for (int i = 0; i < rows; i++) {
+        array[i] = malloc(cols * sizeof(double));
+    }
+    return array;
+}
+
+// Usage
+double** X = allocate_2d_array(NX, M);
+double** Y = allocate_2d_array(NY, M);
+double** W[L];
+double* b[L];
+
+for (int l = 0; l < L; l++) {
+    int next_layer_size = (l == L-1) ? NY : n_h[l+1];
+    int this_layer_size = (l == 0) ? NX : n_h[l];
+    W[l] = allocate_2d_array(next_layer_size, this_layer_size);
+    b[l] = malloc(next_layer_size * sizeof(double));
+}
+
+double* y_hat = malloc(NY * sizeof(double));
+</code></pre>
+</div>
+
+<div id="section30" class="section">
+<h2>30. Activation Functions and Forward Propagation</h2>
+
+<h3>Basic Introduction</h3>
+<p>Activation functions introduce non-linearity into the network. Common ones include ReLU, sigmoid, and tanh.</p>
+<p>Forward propagation equation: a = g[l](Wxx(i) + b1) = g[l](z1)</p>
+
+<h3>Advanced Explanation</h3>
+<p>The activation function g[l] is applied element-wise to the linear transformation of the input. This process is repeated layer by layer in forward propagation.</p>
+
+<h3>C Implementation</h3>
+<pre><code class="language-c">
+#include &lt;math.h&gt;
+
+double relu(double x) {
+    return x > 0 ? x : 0;
+}
+
+double sigmoid(double x) {
+    return 1 / (1 + exp(-x));
+}
+
+void forward_propagation(double* input, double** W, double* b, int input_size, int output_size, double* output) {
+    for (int i = 0; i < output_size; i++) {
+        double z = 0;
+        for (int j = 0; j < input_size; j++) {
+            z += W[i][j] * input[j];
+        }
+        z += b[i];
+        output[i] = relu(z);  // Using ReLU activation
+    }
+}
+</code></pre>
+</div>
+
+<div id="section31" class="section">
+<h2>31. Cost Functions J(x, W, b, y) or J(ŷ, y)</h2>
+
+<h3>Basic Introduction</h3>
+<p>Cost functions measure the difference between predicted and actual outputs. Common ones include:</p>
+<ul>
+    <li>Cross-entropy: JCE(ŷ, y) = -Σ y(i) log ŷ(i)</li>
+    <li>Mean squared error: J1(ŷ, y) = Σ |y(i) - ŷ(i)|^2</li>
+</ul>
+
+<h3>Advanced Explanation</h3>
+<p>Cost functions guide the optimization process. The goal is to minimize the cost function by adjusting the network's parameters (weights and biases).</p>
+
+<h3>C Implementation</h3>
+<pre><code class="language-c">
+#include &lt;math.h&gt;
+
+double cross_entropy_loss(double* y_true, double* y_pred, int n) {
+    double loss = 0;
+    for (int i = 0; i < n; i++) {
+        loss -= y_true[i] * log(y_pred[i]);
+    }
+    return loss;
+}
+
+double mean_squared_error(double* y_true, double* y_pred, int n) {
+    double loss = 0;
+    for (int i = 0; i < n; i++) {
+        double diff = y_true[i] - y_pred[i];
+        loss += diff * diff;
+    }
+    return loss / n;
+}
+</code></pre>
+
+</div>
+
+<div class="section" id="section32">
+    <h2>32. Jacobian Matrix (J)</h2>
+    <h3>Basic Introduction</h3>
+    <p>The Jacobian matrix is a matrix of all first-order partial derivatives of a vector-valued function. It represents how a small change in each input affects each output.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        J = 
+        [ ∂f₁/∂x₁ ∂f₁/∂x₂ ... ∂f₁/∂xn ]
+        [ ∂f₂/∂x₁ ∂f₂/∂x₂ ... ∂f₂/∂xn ]
+        [  .       .           .      ]
+        [ ∂fm/∂x₁ ∂fm/∂x₂ ... ∂fm/∂xn ]
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>The Jacobian matrix is crucial in transforming coordinates in multivariable calculus, optimizing multivariable functions, and is widely used in machine learning, particularly in backpropagation for neural networks.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example function to calculate partial derivatives
+double df1_dx1(double x1, double x2) {
+    return 2 * x1;  // Example: derivative of f1 = x1^2 + x2
+}
+
+double df1_dx2(double x1, double x2) {
+    return 1;  // Example: derivative of f1 = x1^2 + x2
+}
+
+double** compute_jacobian(double (*f[])(double, double), double x1, double x2, int m, int n) {
+    double** J = malloc(m * sizeof(double*));
+    for (int i = 0; i < m; i++) {
+        J[i] = malloc(n * sizeof(double));
+    }
+    J[0][0] = df1_dx1(x1, x2);
+    J[0][1] = df1_dx2(x1, x2);
+    // Add more partial derivatives as necessary
+    return J;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section33">
+    <h2>33. Hessian Matrix (H)</h2>
+    <h3>Basic Introduction</h3>
+    <p>The Hessian matrix is a square matrix of second-order partial derivatives of a scalar-valued function. It is used to analyze the curvature of the function, which is critical in optimization problems.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        H = 
+        [ ∂²f/∂x₁² ∂²f/∂x₁∂x₂ ... ∂²f/∂xn² ]
+        [ ∂²f/∂x₂² ∂²f/∂x₂∂x₁ ... ∂²f/∂xn² ]
+        [  .           .           .      ]
+        [ ∂²f/∂xn² ∂²f/∂xn∂x₁ ... ∂²f/∂xn² ]
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>The Hessian is vital in determining the nature of critical points (minima, maxima, or saddle points) and is heavily used in second-order optimization algorithms like Newton's method.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example second-order partial derivatives
+double d2f_dx1dx1(double x1, double x2) {
+    return 2;  // Example: second derivative of f = x1^2 + x2 with respect to x1
+}
+
+double d2f_dx1dx2(double x1, double x2) {
+    return 0;  // Example: mixed derivative of f = x1^2 + x2 with respect to x1 and x2
+}
+
+double** compute_hessian(double x1, double x2) {
+    double** H = malloc(2 * sizeof(double*));
+    for (int i = 0; i < 2; i++) {
+        H[i] = malloc(2 * sizeof(double));
+    }
+    H[0][0] = d2f_dx1dx1(x1, x2);
+    H[0][1] = d2f_dx1dx2(x1, x2);
+    H[1][0] = H[0][1];  // Hessian is symmetric
+    H[1][1] = 0;  // Example: second derivative of f = x1^2 + x2 with respect to x2
+    return H;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section34">
+    <h2>34. Eigenvalues and Eigenvectors</h2>
+    <h3>Basic Introduction</h3>
+    <p>Eigenvalues and eigenvectors are key concepts in linear algebra. An eigenvector of a matrix is a vector that remains parallel to itself after being transformed by the matrix, and the corresponding eigenvalue is a scalar that represents how much the eigenvector is scaled during the transformation.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        A * v = λ * v
+    </code></pre>
+    <p>Where A is a square matrix, v is the eigenvector, and λ (lambda) is the eigenvalue.</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Eigenvalues and eigenvectors are used in many areas including principal component analysis (PCA), stability analysis, and quantum mechanics. They help in simplifying matrix operations and understanding the structure of a matrix.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+void power_iteration(double** A, double* v, int n, int iterations) {
+    for (int k = 0; k < iterations; k++) {
+        double* w = malloc(n * sizeof(double));
+        for (int i = 0; i < n; i++) {
+            w[i] = 0;
+            for (int j = 0; j < n; j++) {
+                w[i] += A[i][j] * v[j];
+            }
+        }
+        // Normalize vector w to become the next eigenvector approximation
+        double norm = 0;
+        for (int i = 0; i < n; i++) {
+            norm += w[i] * w[i];
+        }
+        norm = sqrt(norm);
+        for (int i = 0; i < n; i++) {
+            v[i] = w[i] / norm;
+        }
+        free(w);
+    }
+}
+
+double compute_eigenvalue(double** A, double* v, int n) {
+    double* Av = malloc(n * sizeof(double));
+    double eigenvalue = 0;
+    for (int i = 0; i < n; i++) {
+        Av[i] = 0;
+        for (int j = 0; j < n; j++) {
+            Av[i] += A[i][j] * v[j];
+        }
+        eigenvalue += v[i] * Av[i];
+    }
+    free(Av);
+    return eigenvalue;
+}
+    </code></pre>
+</div>
+
+
+<div class="section" id="section35">
+    <h2>35. Matrix Inverses and Determinants</h2>
+    <h3>Basic Introduction</h3>
+    <p>The inverse of a matrix A is another matrix, denoted A⁻¹, such that A * A⁻¹ = I, where I is the identity matrix. The determinant of a matrix is a scalar value that is a function of the entries of a square matrix and provides important properties of the matrix.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        A * A⁻¹ = I
+        
+        det(A) = ∑ (sign(σ) * a₁σ(1) * a₂σ(2) * ... * anσ(n))
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>Determinants are used to solve systems of linear equations, compute eigenvalues, and understand matrix properties like invertibility. The inverse matrix is crucial in solving matrix equations and in many algorithms in computer science and data analysis.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+double determinant(double** A, int n) {
+    if (n == 1) return A[0][0];
+    if (n == 2) return A[0][0] * A[1][1] - A[0][1] * A[1][0];
+
+    double det = 0;
+    for (int p = 0; p < n; p++) {
+        double** submatrix = malloc((n-1) * sizeof(double*));
+        for (int i = 1; i < n; i++) {
+            submatrix[i-1] = malloc((n-1) * sizeof(double));
+            for (int j = 0, col = 0; j < n; j++) {
+                if (j == p) continue;
+                submatrix[i-1][col++] = A[i][j];
+            }
+        }
+        det += A[0][p] * determinant(submatrix, n-1) * (p % 2 == 0 ? 1 : -1);
+        for (int i = 0; i < n-1; i++) free(submatrix[i]);
+        free(submatrix);
+    }
+    return det;
+}
+
+void inverse(double** A, double** inverse, int n) {
+    double det = determinant(A, n);
+    if (det == 0) {
+        printf("Singular matrix, no inverse.");
+        return;
+    }
+
+    // Compute the inverse here (this implementation is non-trivial and can be complex)
+    // ...
+}
+    </code></pre>
+</div>
+
+
+<div class="section" id="section36">
+    <h2>36. L'Hôpital's Rule</h2>
+    <h3>Basic Introduction</h3>
+    <p>L'Hôpital's Rule provides a method to evaluate limits that result in indeterminate forms, such as 0/0 or ∞/∞.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        lim (f(x)/g(x)) = lim (f'(x)/g'(x))
+        x -> c               x -> c
+    </code></pre>
+    <p>Provided that the limit on the right-hand side exists.</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>L'Hôpital's Rule is useful for calculating difficult limits and appears frequently in calculus, particularly in problems involving asymptotic analysis and optimization.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+#include &lt;math.h&gt;
+
+double f(double x) {
+    return sin(x);
+}
+
+double g(double x) {
+    return x;
+}
+
+double df_dx(double x) {
+    return cos(x);
+}
+
+double dg_dx(double x) {
+    return 1;
+}
+
+double lhopital_rule(double x) {
+    double numerator = df_dx(x);
+    double denominator = dg_dx(x);
+    if (denominator == 0) {
+        printf("Indeterminate form at x = %.2f\n", x);
+        return NAN;
+    }
+    return numerator / denominator;
+}
+    </code></pre>
+</div>
+
+
+
+<div class="section" id="section37">
+    <h2>37. Implicit Differentiation</h2>
+    <h3>Basic Introduction</h3>
+    <p>Implicit differentiation is used when a function is not explicitly solved for one variable in terms of the others, but you still need to find its derivative.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        Given: F(x, y) = 0
+        Then: dy/dx = - (∂F/∂x) / (∂F/∂y)
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>Implicit differentiation is particularly useful in situations where solving for one variable explicitly is complex or impossible, such as in many equations in physics and economics.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example function F(x, y) = x^2 + y^2 - 1 = 0 (circle equation)
+double dF_dx(double x, double y) {
+    return 2 * x;
+}
+
+double dF_dy(double x, double y) {
+    return 2 * y;
+}
+
+double implicit_derivative(double x, double y) {
+    return -dF_dx(x, y) / dF_dy(x, y);
+}
+    </code></pre>
+</div>
+
+
+
+<div class="section" id="section38">
+    <h2>38. Chain Rule</h2>
+    <h3>Basic Introduction</h3>
+    <p>The chain rule is a fundamental theorem in calculus used to differentiate composite functions.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        If y = f(g(x)), then dy/dx = f'(g(x)) * g'(x)
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>The chain rule is essential for understanding how to differentiate functions composed of other functions. It is widely used in the backpropagation algorithm in neural networks and in various other optimization techniques.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example: f(g(x)) where f(u) = u^2 and g(x) = sin(x)
+double g(double x) {
+    return sin(x);
+}
+
+double f(double u) {
+    return u * u;
+}
+
+double chain_rule(double x) {
+    double u = g(x);
+    double df_du = 2 * u;
+    double dg_dx = cos(x);
+    return df_du * dg_dx;
+}
+    </code></pre>
+</div>
+
+
+
+<div class="section" id="section39">
+    <h2>39. Multivariable Calculus</h2>
+    <h3>Basic Introduction</h3>
+    <p>Multivariable calculus extends calculus to functions of several variables. It includes concepts like partial derivatives, multiple integrals, and gradient vectors.</p>
+
+    <h3>Key Concepts</h3>
+    <ul>
+        <li><strong>Partial Derivatives:</strong> Derivatives of functions with respect to one variable, holding others constant.</li>
+        <li><strong>Gradient (∇):</strong> A vector that represents the direction and rate of fastest increase of a function.</li>
+        <li><strong>Multiple Integrals:</strong> Integrals over more than one variable, used to compute volumes and areas.</li>
+    </ul>
+
+    <h3>Advanced Explanation</h3>
+    <p>Multivariable calculus is essential in fields such as optimization, physics, and machine learning. It allows for the analysis of systems with multiple changing variables.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example: Gradient of f(x, y) = x^2 + y^2
+double df_dx(double x, double y) {
+    return 2 * x;
+}
+
+double df_dy(double x, double y) {
+    return 2 * y;
+}
+
+void compute_gradient(double x, double y, double* gradient) {
+    gradient[0] = df_dx(x, y);
+    gradient[1] = df_dy(x, y);
+}
+    </code></pre>
+</div>
+
+
+
+<div class="section" id="section40">
+    <h2>40. Big-O Notation (O)</h2>
+    <h3>Basic Introduction</h3>
+    <p>Big-O notation describes the upper bound of an algorithm's runtime or space complexity in the worst case, helping to classify algorithms according to how their running time or space requirements grow as the input size grows.</p>
+
+    <h3>Mathematical Notation</h3>
+    <pre><code>
+        O(f(n)) = { g(n) | there exists constants c > 0 and n₀ ≥ 0 such that 0 ≤ g(n) ≤ c * f(n) for all n ≥ n₀ }
+    </code></pre>
+
+    <h3>Advanced Explanation</h3>
+    <p>Big-O notation is crucial for analyzing the efficiency of algorithms, particularly in computer science. It helps in making decisions about which algorithms to use based on their performance as the size of the input data grows.</p>
+
+    <h3>C Implementation</h3>
+    <pre><code>
+// Example: Linear Search O(n)
+int linear_search(int* arr, int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Example: Binary Search O(log n)
+int binary_search(int* arr, int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1;
+}
+    </code></pre>
+</div>
+
+
+    <div id="resources">
+        <h2>Recommended Resources</h2>
+        <ul>
+            <li><a href="https://www.khanacademy.org/math">Khan Academy - Mathematics</a></li>
+            <li><a href="https://ocw.mit.edu/courses/mathematics/">MIT OpenCourseWare - Mathematics</a></li>
+        <li><a href="https://cs230.stanford.edu/files/Notation.pdf">cs230 - Standard notations for Deep Learning</a></li>
+            <li>"Concrete Mathematics" by Graham, Knuth, and Patashnik</li>
+            <li>"Mathematics for Computer Science" by Eric Lehman and Tom Leighton</li>
+        </ul>
+    </div>
 
     <script>
         // JavaScript to toggle the navigation menu
