@@ -1,5 +1,6 @@
 # Mathematical Notation in Code
 
+[This URL is temporary: https://mathfordevelopers.14milimetros.com/](https://mathfordevelopers.14milimetros.com/)
 ## Overview
 
 Welcome to the **Mathematical Notation in Code** repository! This project is a personal guide and exploration of integrating mathematical notation with programming. It is designed to aid in understanding and implementing mathematical concepts in code, particularly for those interested in how mathematical symbols and notations translate into practical programming scenarios.
