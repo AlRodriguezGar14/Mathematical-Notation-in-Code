@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math4Programmers</title>
+    <style>
+        /* General styles for the body */
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #eafff7; /* Gruvbox background */
+            color: #000000; /* Gruvbox foreground */
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Style for the section */
+        .section {
+            padding: 30px;
+            border: 4px solid #000000; /* Gruvbox dark gray */
+            border-radius: 20px;
+            background-color: #f9f1c8; /* Gruvbox light background */
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 15px 15px 0px rgb(0, 0, 0);
+        }
+
+        /* Style for headings */
+        .section h2 {
+            font-size: 1.8em;
+            color: #03657a; /* Gruvbox blue */
+            margin-top: 0;
+            border-bottom: 2px solid #cc241d; /* Gruvbox red */
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .section h3 {
+            font-size: 1.4em;
+            color: #03657a; /* Gruvbox blue */
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Style for paragraphs */
+        .section p {
+            margin: 0 0 15px;
+            padding: 0;
+        }
+
+        /* Style for code blocks */
+        pre {
+            background-color: #3b4639; /* Gruvbox light */
+            border: 2px solid #000000; /* Gruvbox black */
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0px rgb(0, 0, 0);
+            font-size: 1em;
+            font-family: 'Courier New', Courier, monospace;
+            color: #EADBB2; /* Gruvbox foreground */
+        }
+
+        code {
+            background-color: #3b4639; /* Gruvbox light */
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Style for strong text */
+        strong {
+            color: #cc241d; /* Gruvbox red-ish */
+            font-weight: bold;
+        }
+
+        /* Additional styles for emphasis */
+        .section pre code {
+            display: block;
+            white-space: pre-wrap; /* Allow long lines to wrap */
+        }
+
+        /* Style for the container */
+        .section-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Styles for the navigation menu */
+        #navMenu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #f9f1c8;
+            padding: 20px;
+            box-shadow: -15px 0px 0px rgb(0, 0, 0);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000; /* Ensure the menu is on top */
+        }
+        #navMenu.show {
+            transform: translateX(0);
+        }
+        #navMenu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #navMenu ul li a {
+            display: block;
+            padding: 10px 0;
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Styles for the menu button */
+        #menuButton {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f9f1c8;
+            border: 4px solid #000000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            color: #000000;
+            cursor: pointer;
+            transition: right 0.3s ease-in-out;
+            z-index: 1001; /* Ensure the button is on top */
+        }
+        #menuButton.show {
+            right: 220px;
+        }
+
+        /* Header table styling */
+        .header {
+            width: 100%;
+            max-width: 800px; /* Match section max-width */
+            margin: 0 auto; /* Center align */
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            border: 4px solid #000000; /* Thick black border */
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Title and subtitle styling */
+        .title {
+            font-size: 2.5em;
+            color: #03657a; /* Title color */
+            text-align: left;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #3c3836; /* Subtitle color */
+            text-align: left;
+        }
+
+        /* Column widths */
+        .width-auto {
+            width: 75%; /* 3/4 of the space */
+            text-align: left; /* Align text to the left */
+        }
+
+        .width-min {
+            width: 25%; /* 1/4 of the space */
+            text-align: right; /* Align text to the right */
+        }
+
+        /* Link styling */
+        a {
+            color: #03657a; /* Link color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Time styling */
+        time {
+            white-space: pre; /* Preserve formatting for date */
+        }
+    </style>
+</head>
+<body>
+    <table class="header">
+        <tbody>
+            <tr>
+                <td colspan="2" rowspan="2" class="width-auto">
+                    <h1 class="title">Mathematical Notation in Code</h1>
+                    <span class="subtitle">From Symbols to Implementation: A Programmer’s Guide to Integrating Math Notation</span>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <th class="width-min">Author</th>
+                <td class="width-auto"><a href="https://github.com/AlRodriguezGar14"><cite>Alberto Rodriguez</cite></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="menuButton">☰</div>
+
+<div id="navMenu">
+    <ul>
+        <li><a href="#section1">1. Σ (Sigma) - Summation</a></li>
+        <li><a href="#section2">2. ∏ (Pi) - Product</a></li>
+        <li><a href="#section3">3. √ - Square Root</a></li>
+        <li><a href="#section4">4. ∫ - Integral</a></li>
+        <li><a href="#section5">5. d/dx - Derivative</a></li>
+        <li><a href="#section6">6. lim - Limit</a></li>
+        <li><a href="#section7">7. ∀ - For All</a></li>
+        <li><a href="#section8">8. {…} - Set Notation</a></li>
+        <li><a href="#section9">9. ∈ - Element of</a></li>
+        <li><a href="#section10">10. { | property} - Set Builder Notation</a></li>
+        <li><a href="#section11">11. ⊆ - Subset</a></li>
+        <li><a href="#section12">12. ∪ - Union</a></li>
+        <li><a href="#section13">13. ∩ - Intersection</a></li>
+        <li><a href="#section14">14. ∂ - Partial Derivative</a></li>
+        <li><a href="#section15">15. ∇ - Gradient</a></li>
+        <li><a href="#section16">16. ≈ - Approximately Equal</a></li>
+        <li><a href="#section17">17. ∞ - Infinity</a></li>
+        <li><a href="#section18">18. ∃ - There Exists</a></li>
+        <li><a href="#section19">19. ⇒ and ⇔ - Implication and Equivalence</a></li>
+        <li><a href="#section20">20. Matrix Operations</a></li>
+        <li><a href="#section21">21. Partial Derivatives and Gradients in Neural Networks</a></li>
+        <li><a href="#section22">22. Activation Functions</a></li>
+        <li><a href="#section23">23. Probability and Statistics in Machine Learning</a></li>
+        <li><a href="#section24">24. Optimization Techniques</a></li>
+    </ul>
+</div>
+
+<div class="section" id="section1">
+    <h2>1. Σ (Sigma) - Summation</h2>
+    <h3>Basic Introduction</h3>
+    <p>The Σ (Sigma) symbol represents summation in mathematics. It's used to describe the sum of a sequence of numbers.</p>
+
+    <h3>Simple Example</h3>
+    <pre><code>
+ 5
+ Σ i = 1 + 2 + 3 + 4 + 5 = 15
+i=1
+    </code></pre>
+    <p>This means "sum up the values of i, where i goes from 1 to 5".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Summation is a fundamental operation in calculus and discrete mathematics. It can represent finite or infinite series and is crucial in areas like probability, statistics, and numerical analysis.</p>
+
+    <h3>Complex Example: Sum of Natural Numbers</h3>
+    <p><strong>Mathematical Notation:</strong></p>
+    <pre><code>
+ n
+ Σ i = n(n + 1) / 2
+i=1
+    </code></pre>
+
+    <p><strong>Meaning:</strong> The sum of integers from 1 to n.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+int sum_of_natural_numbers(int n) {
+    return n * (n + 1) / 2;
+}
+    </code></pre>
+
+    <p><strong>Iterative Implementation:</strong></p>
+    <pre><code>
+int sum_of_natural_numbers_iterative(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+    </code></pre>
+
+    <h3>Additional Example: Summation with a Step Size</h3>
+    <p>Sometimes summations include a step size other than 1.</p>
+
+    <p><strong>Mathematical Notation:</strong></p>
+    <pre><code>
+ Σ (i=1 to 10, step 2) of i = 1 + 3 + 5 + 7 + 9 = 25
+    </code></pre>
+
+    <p><strong>Meaning:</strong> Sum the numbers from 1 to 10 with a step size of 2.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+int sum_with_step(int start, int end, int step) {
+    int sum = 0;
+    for (int i = start; i <= end; i += step) {
+        sum += i;
+    }
+    return sum;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section2">
+    <h2>2. ∏ (Pi) - Product</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∏ (Pi) symbol represents the product of a sequence of numbers, similar to how Σ represents summation.</p>
+
+    <h3>Simple Example</h3>
+    <pre><code>
+ 5
+ ∏ i = 1 * 2 * 3 * 4 * 5 = 120
+i=1
+    </code></pre>
+    <p>This means "multiply the values of i, where i goes from 1 to 5".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Product notation is essential in combinatorics, probability theory, and many areas of advanced mathematics. It's particularly useful for representing factorials and certain types of series.</p>
+
+    <h3>Complex Example: Factorial</h3>
+    <p><strong>Mathematical Notation:</strong></p>
+    <pre><code>
+ n
+ ∏ i = n!
+i=1
+    </code></pre>
+
+    <p><strong>Meaning:</strong> The product of integers from 1 to n, also known as n factorial.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+unsigned long long factorial(int n) {
+    unsigned long long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section3">
+    <h2>3. √ - Square Root</h2>
+    <h3>Basic Introduction</h3>
+    <p>The √ symbol represents the square root of a number. It's the inverse operation of squaring a number.</p>
+
+    <h3>Simple Example</h3>
+    <p>√9 = 3, because 3 * 3 = 9</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Square roots are irrational for most numbers, leading to important concepts in number theory and algebra. They're fundamental in geometry, particularly for calculating distances using the Pythagorean theorem.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+#include <math.h>
+
+double square_root(double x) {
+    return sqrt(x);
+}
+    </code></pre>
+
+    <h3>Newton's Method for Square Root</h3>
+    <pre><code>
+double sqrt_newton(double x, int iterations) {
+    double guess = x / 2.0;
+    for (int i = 0; i < iterations; i++) {
+        guess = (guess + x / guess) / 2.0;
+    }
+    return guess;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section4">
+    <h2>4. ∫ - Integral</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∫ symbol represents integration in calculus. It can be thought of as the opposite of differentiation and is often used to calculate areas under curves.</p>
+
+    <h3>Simple Example</h3>
+    <pre><code>
+ 1
+ ∫ x dx = [x²/2] from 0 to 1 = 1/2
+ 0
+    </code></pre>
+    <p>This calculates the area under the curve y = x from x = 0 to x = 1.</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Integration is a fundamental concept in calculus with applications in physics, engineering, and many other fields. It's used to solve differential equations, calculate volumes, and much more.</p>
+
+    <p><strong>C Implementation (Numerical Integration - Trapezoidal Rule):</strong></p>
+    <pre><code>
+double integrate_trapezoidal(double (*f)(double), double a, double b, int n) {
+    double h = (b - a) / n;
+    double sum = 0.5 * (f(a) + f(b));
+    for (int i = 1; i < n; i++) {
+        sum += f(a + i * h);
+    }
+    return sum * h;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section5">
+    <h2>5. d/dx - Derivative</h2>
+    <h3>Basic Introduction</h3>
+    <p>The d/dx symbol represents differentiation with respect to x. It's used to find the rate of change of a function.</p>
+
+    <h3>Simple Example</h3>
+    <pre><code>
+d
+-- (x²) = 2x
+dx
+    </code></pre>
+    <p>This means "the derivative of x² with respect to x is 2x".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Differentiation is a key concept in calculus, used to analyze rates of change, find maxima and minima, and solve optimization problems. It's crucial in physics for describing motion and in economics for marginal analysis.</p>
+
+    <p><strong>C Implementation (Numerical Differentiation):</strong></p>
+    <pre><code>
+double derivative(double (*f)(double), double x, double h) {
+    return (f(x + h) - f(x - h)) / (2 * h);
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section6">
+    <h2>6. lim - Limit</h2>
+    <h3>Basic Introduction</h3>
+    <p>The lim symbol represents the limit of a function as the input approaches a specific value.</p>
+
+    <h3>Simple Example</h3>
+    <pre><code>
+    lim (1/x) = 0
+x -> ∞
+    </code></pre>
+    <p>This means "as x approaches infinity, 1/x approaches 0".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Limits are fundamental in calculus, used to define continuity, derivatives, and integrals. They're crucial for understanding function behavior near critical points or asymptotes.</p>
+
+    <p><strong>C Implementation (Limit Approximation):</strong></p>
+    <pre><code>
+double limit_approx(double (*f)(double), double a, double epsilon) {
+    return f(a + epsilon);
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section7">
+    <h2>7. ∀ - For All</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∀ symbol means "for all" or "for every" in mathematical logic and set theory.</p>
+
+    <h3>Simple Example</h3>
+    <p>∀x (x² ≥ 0) means "for all x, x squared is greater than or equal to zero".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>This universal quantifier is used in formal logic, set theory, and mathematical proofs. It's often paired with the existential quantifier (∃) in complex logical statements.</p>
+
+    <p><strong>C Implementation (conceptual):</strong></p>
+    <pre><code>
+int for_all(int* set, int size, int (*predicate)(int)) {
+    for (int i = 0; i < size; i++) {
+        if (!predicate(set[i])) return 0;
+    }
+    return 1;
+}
+
+// Usage example
+int is_positive(int x) { return x > 0; }
+int result = for_all(my_array, array_size, is_positive);
+    </code></pre>
+</div>
+
+<div class="section" id="section8">
+    <h2>8. {…} - Set Notation</h2>
+    <h3>Basic Introduction</h3>
+    <p>Curly braces {} are used to denote sets, which are collections of distinct objects.</p>
+
+    <h3>Simple Example</h3>
+    <p>{1, 2, 3, 4, 5} represents a set containing the first five positive integers.</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Set notation is fundamental in mathematics for describing collections of objects. It's used extensively in set theory, algebra, and computer science, especially in describing data structures.</p>
+
+    <p><strong>C Implementation (using a simple array):</strong></p>
+    <pre><code>
+#include <stdio.h>
+
+void print_set(int* set, int size) {
+    printf("{");
+    for (int i = 0; i < size; i++) {
+        printf("%d", set[i]);
+        if (i < size - 1) printf(", ");
+    }
+    printf("}\n");
+}
+
+// Usage
+int my_set[] = {1, 2, 3, 4, 5};
+print_set(my_set, 5);
+    </code></pre>
+</div>
+
+<div class="section" id="section9">
+    <h2>9. ∈ - Element of</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∈ symbol means "is an element of" or "belongs to" a set.</p>
+
+    <h3>Simple Example</h3>
+    <p>If S = {1, 2, 3}, then 2 ∈ S means "2 is an element of set S".</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>This symbol is crucial in set theory for describing relationships between elements and sets. It's used in defining sets, proving set properties, and in many areas of discrete mathematics.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+int is_element_of(int element, int* set, int size) {
+    for (int i = 0; i < size; i++) {
+        if (set[i] == element) return 1;
+    }
+    return 0;
+}
+
+// Usage
+int my_set[] = {1, 2, 3, 4, 5};
+int result = is_element_of(3, my_set, 5);  // Returns 1 (true)
+    </code></pre>
+</div>
+
+<div class="section" id="section10">
+    <h2>10. { | property} - Set Builder Notation</h2>
+    <h3>Basic Introduction</h3>
+    <p>Set builder notation describes a set by stating a property that its members must satisfy.</p>
+
+    <h3>Simple Example</h3>
+    <p>{x | x is an even number less than 10} = {2, 4, 6, 8}</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>This notation is powerful for defining sets based on properties rather than listing elements. It's widely used in mathematics to concisely describe infinite sets or sets with complex membership criteria.</p>
+
+    <p><strong>C Implementation (conceptual):</strong></p>
+    <pre><code>
+#include <stdlib.h>
+
+int* build_set(int max, int (*property)(int), int* size) {
+    int* set = malloc(max * sizeof(int));
+    *size = 0;
+    for (int i = 0; i < max; i++) {
+        if (property(i)) {
+            set[(*size)++] = i;
+        }
+    }
+    return set;
+}
+
+// Usage example
+int is_even_less_than_10(int x) { return x % 2 == 0 && x < 10; }
+int size;
+int* even_set = build_set(10, is_even_less_than_10, &size);
+    </code></pre>
+</div>
+
+<div class="section" id="section11">
+    <h2>11. ⊆ - Subset</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ⊆ symbol means "is a subset of". A set A is a subset of set B if every element of A is also an element of B.</p>
+
+    <h3>Simple Example</h3>
+    <p>If A = {1, 2} and B = {1, 2, 3, 4}, then A ⊆ B.</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>The subset relationship is fundamental in set theory and is used extensively in proofs and in defining relationships between sets. It's closely related to the concepts of power sets and set inclusion.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+int is_subset(int* setA, int sizeA, int* setB, int sizeB) {
+    for (int i = 0; i < sizeA; i++) {
+        if (!is_element_of(setA[i], setB, sizeB)) return 0;
+    }
+    return 1;
+}
+
+// Usage
+int setA[] = {1, 2};
+int setB[] = {1, 2, 3, 4};
+int result = is_subset(setA, 2, setB, 4);  // Returns 1 (true)
+    </code></pre>
+</div>
+
+<div class="section" id="section12">
+    <h2>12. ∪ - Union</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∪ symbol represents the union of sets. The union of sets A and B is the set of elements that are in A, in B, or in both A and B.</p>
+
+    <h3>Simple Example</h3>
+    <p>If A = {1, 2, 3} and B = {3, 4, 5}, then A ∪ B = {1, 2, 3, 4, 5}</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Union is a fundamental set operation used in set theory, logic, and computer science. It's essential in database operations, algorithm design, and in solving problems involving multiple sets.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+#include <stdlib.h>
+
+int* union_sets(int* setA, int sizeA, int* setB, int sizeB, int* sizeResult) {
+    int* result = malloc((sizeA + sizeB) * sizeof(int));
+    *sizeResult = 0;
+    
+    // Add all elements from set A
+    for (int i = 0; i < sizeA; i++) {
+        result[(*sizeResult)++] = setA[i];
+    }
+    
+    // Add elements from set B that are not in A
+    for (int i = 0; i < sizeB; i++) {
+        if (!is_element_of(setB[i], setA, sizeA)) {
+            result[(*sizeResult)++] = setB[i];
+        }
+    }
+    
+    return result;
+}
+
+// Usage
+int setA[] = {1, 2, 3};
+int setB[] = {3, 4, 5};
+int sizeResult;
+int* unionSet = union_sets(setA, 3, setB, 3, &sizeResult);
+    </code></pre>
+</div>
+
+<div class="section" id="section13">
+    <h2>13. ∩ - Intersection</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∩ symbol represents the intersection of sets. The intersection of sets A and B is the set of elements that are in both A and B.</p>
+
+    <h3>Simple Example</h3>
+    <p>If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, then A ∩ B = {3, 4}</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Intersection is a fundamental set operation used in set theory, logic, and database operations. It's crucial in finding common elements between sets and in defining relationships between different sets.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+int* intersection(int* setA, int sizeA, int* setB, int sizeB, int* sizeResult) {
+    int* result = malloc(((sizeA < sizeB) ? sizeA : sizeB) * sizeof(int));
+    *sizeResult = 0;
+    
+    for (int i = 0; i < sizeA; i++) {
+        if (is_element_of(setA[i], setB, sizeB)) {
+            result[(*sizeResult)++] = setA[i];
+        }
+    }
+    
+    return result;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section14">
+    <h2>14. ∂ - Partial Derivative</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∂ symbol represents a partial derivative, which is the derivative of a function with respect to one variable, treating other variables as constants.</p>
+
+    <h3>Simple Example</h3>
+    <p>If f(x, y) = x² + xy, then ∂f/∂x = 2x + y</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Partial derivatives are crucial in multivariable calculus, used to analyze functions of several variables. They're fundamental in physics, engineering, and economics for studying rates of change in complex systems.</p>
+
+    <p><strong>C Implementation (numerical approximation):</strong></p>
+    <pre><code>
+double partial_derivative(double (*f)(double, double), double x, double y, double h, int respect_to_x) {
+    if (respect_to_x) {
+        return (f(x + h, y) - f(x - h, y)) / (2 * h);
+    } else {
+        return (f(x, y + h) - f(x, y - h)) / (2 * h);
+    }
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section15">
+    <h2>15. ∇ - Gradient</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∇ (nabla) symbol represents the gradient of a scalar function, which is a vector of all its partial derivatives.</p>
+
+    <h3>Simple Example</h3>
+    <p>If f(x, y) = x² + xy + y², then ∇f = (2x + y, x + 2y)</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>The gradient is a key concept in vector calculus, crucial for optimization problems, potential theory in physics, and machine learning algorithms like gradient descent.</p>
+
+    <p><strong>C Implementation (2D gradient):</strong></p>
+    <pre><code>
+typedef struct {
+    double x;
+    double y;
+} Vector2D;
+
+Vector2D gradient(double (*f)(double, double), double x, double y, double h) {
+    Vector2D grad;
+    grad.x = partial_derivative(f, x, y, h, 1);
+    grad.y = partial_derivative(f, x, y, h, 0);
+    return grad;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section16">
+    <h2>16. ≈ - Approximately Equal</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ≈ symbol means "approximately equal to" and is used when two values are close but not exactly the same.</p>
+
+    <h3>Simple Example</h3>
+    <p>π ≈ 3.14159</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>This concept is crucial in numerical analysis, physics, and engineering where exact values are often impossible or impractical to compute. It's also important in defining limits and in computational approximations.</p>
+
+    <p><strong>C Implementation:</strong></p>
+    <pre><code>
+#include <math.h>
+
+int approximately_equal(double a, double b, double epsilon) {
+    return fabs(a - b) < epsilon;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section17">
+    <h2>17. ∞ - Infinity</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∞ symbol represents infinity, a concept of something without any limit.</p>
+
+    <h3>Simple Example</h3>
+    <p>The set of all positive integers: {1, 2, 3, ...} → ∞</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Infinity is a profound concept in mathematics, used in calculus for limits, in set theory for describing infinite sets, and in topology. It's crucial for understanding asymptotic behavior and in defining certain mathematical structures.</p>
+
+    <p><strong>C Implementation (representation using limits):</strong></p>
+    <pre><code>
+#include <float.h>
+
+#define INFINITY DBL_MAX
+
+double approach_infinity(int n) {
+    return 1.0 / (1.0 / n);
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section18">
+    <h2>18. ∃ - There Exists</h2>
+    <h3>Basic Introduction</h3>
+    <p>The ∃ symbol means "there exists" or "there is at least one" in mathematical logic.</p>
+
+    <h3>Simple Example</h3>
+    <p>∃x (x² = 4) means "there exists an x such that x squared equals 4"</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>This existential quantifier is crucial in logic and set theory, often used in conjunction with the universal quantifier (∀) to form complex logical statements and in mathematical proofs.</p>
+    <p><strong>C Implementation (conceptual):</strong></p>
+    <pre><code>
+int there_exists(int* set, int size, int (*predicate)(int)) {
+    for (int i = 0; i < size; i++) {
+        if (predicate(set[i])) return 1;
+    }
+    return 0;
+}
+
+// Usage example
+int is_even(int x) { return x % 2 == 0; }
+int result = there_exists(my_array, array_size, is_even);
+    </code></pre>
+</div>
+
+<div class="section" id="section19">
+    <h2>19. ⇒ and ⇔ - Implication and Equivalence</h2>
+    <h3>Basic Introduction</h3>
+    <p>⇒ means "implies" or "if...then"</p>
+    <p>⇔ means "if and only if" or "is equivalent to"</p>
+
+    <h3>Simple Example</h3>
+    <p>A ⇒ B: "If it's raining (A), then the ground is wet (B)"</p>
+    <p>A ⇔ B: "A triangle is equilateral if and only if all its angles are 60°"</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>These logical connectives are fundamental in mathematical logic, used extensively in proofs, definitions, and in formalizing mathematical statements. They're crucial in understanding the relationships between different mathematical conditions or statements.</p>
+
+    <p>C Implementation (conceptual boolean logic)</p>
+    <pre><code>
+int implies(int a, int b) {
+    return !a || b;  // equivalent to "not A or B"
+}
+
+int iff(int a, int b) {
+    return (a && b) || (!a && !b);  // both true or both false
+}
+    </code></pre>
+</div>
+
+
+<h3>Note: Adding new sections specifically relevant to deep learning below.</h3>
+
+
+<div class="section" id="section20">
+    <h2>20. Matrix Operations</h2>
+    <h3>Basic Introduction</h3>
+    <p>
+Matrices are rectangular arrays of numbers, symbols, or expressions arranged in rows and columns. They are fundamental in deep learning for representing and manipulating data and model parameters.
+</p>
+
+    <h3>Simple Example</h3>
+    <p>
+A 2x3 matrix: 
+</br>
+A = [ 1 2 3 ]
+    [ 4 5 6 ]
+</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>
+Matrix operations like addition, multiplication, and transposition are crucial in deep learning for tasks such as feature transformation, weight updates, and backpropagation.
+</p>
+
+    <h3>Key Notations</h3>
+    <p>A^T: Transpose of matrix A</p>
+    <p>AB: Matrix multiplication of A and B</p>
+    <p>A ⊙ B: Hadamard (element-wise) product of A and B</p>
+
+
+    <h3>C Implementation (basic matrix operations)</h3>
+    <pre><code>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int rows, cols;
+    double** data;
+} Matrix;
+
+Matrix create_matrix(int rows, int cols) {
+    Matrix m = {rows, cols, malloc(rows * sizeof(double*))};
+    for (int i = 0; i < rows; i++) {
+        m.data[i] = calloc(cols, sizeof(double));
+    }
+    return m;
+}
+
+Matrix matrix_multiply(Matrix A, Matrix B) {
+    if (A.cols != B.rows) {
+        printf("Error: incompatible dimensions\n");
+        exit(1);
+    }
+    Matrix C = create_matrix(A.rows, B.cols);
+    for (int i = 0; i < A.rows; i++) {
+        for (int j = 0; j < B.cols; j++) {
+            for (int k = 0; k < A.cols; k++) {
+                C.data[i][j] += A.data[i][k] * B.data[k][j];
+            }
+        }
+    }
+    return C;
+}
+
+// Other operations like addition, transposition can be implemented similarly
+    </code></pre>
+</div>
+
+<div class="section" id="section21">
+    <h2>21. Partial Derivatives and Gradients in Neural Networks</h2>
+    <h3>Basic Introduction</h3>
+    <p>In deep learning, partial derivatives and gradients are used to compute how the loss function changes with respect to each model parameter.</p>
+
+    <h3>Simple Example</h3>
+    <p>For a loss function L(w, b) where w is a weight and b is a bias:</p>
+    <p>∂L/∂w represents how L changes with respect to w</p>
+    <p>∂L/∂b represents how L changes with respect to b</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>The gradient of the loss function with respect to all parameters forms the basis of gradient descent optimization in neural networks. Backpropagation efficiently computes these gradients.</p>
+
+    <h3>Key Notation</h3>
+    <p>∇L = [∂L/∂w₁, ∂L/∂w₂, ..., ∂L/∂wn, ∂L/∂b]</p>
+
+    <h3>C Implementation (simple gradient descent)</h3>
+    <pre><code>
+void gradient_descent(double *w, double *b, double learning_rate, int iterations) {
+    for (int i = 0; i < iterations; i++) {
+        double dL_dw = compute_gradient_w(*w, *b);  // Compute ∂L/∂w
+        double dL_db = compute_gradient_b(*w, *b);  // Compute ∂L/∂b
+        *w -= learning_rate * dL_dw;
+        *b -= learning_rate * dL_db;
+    }
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section22">
+    <h2>22. Activation Functions</h2>
+    <h3>Basic Introduction</h3>
+    <p>Activation functions introduce non-linearity into neural networks, allowing them to learn complex patterns.</p>
+
+    <h3>Common Activation Functions</h3>
+    <p>1. Sigmoid: σ(x) = 1 / (1 + e^(-x))</p>
+    <p>2. ReLU: f(x) = max(0, x)</p>
+    <p>3. Tanh: tanh(x) = (e^x - e^(-x)) / (e^x + e^(-x))</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Choice of activation functions affects the network's ability to learn and can help mitigate issues like vanishing gradients.</p>
+
+    <h3>C Implementation (activation functions)</h3>
+    <pre><code>
+#include <math.h>
+
+double sigmoid(double x) {
+    return 1.0 / (1.0 + exp(-x));
+}
+
+double relu(double x) {
+    return (x > 0) ? x : 0;
+}
+
+double tanh_activation(double x) {
+    return tanh(x);
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section23">
+    <h2>23. Probability and Statistics in Machine Learning</h2>
+    <h3>Basic Introduction</h3>
+    <p>Probability theory underpins many machine learning concepts, from loss functions to generative models.</p>
+
+    <h3>Key Concepts</h3>
+    <p>- P(A|B): Conditional probability of A given B</p>
+    <p>- E[X]: Expected value of random variable X</p>
+    <p>- Var(X): Variance of X</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Concepts like maximum likelihood estimation, Bayesian inference, and information theory are crucial in understanding and developing machine learning algorithms.</p>
+
+    <h3>C Implementation (basic probability calculations)</h3>
+    <pre><code>
+double expected_value(double *values, double *probabilities, int n) {
+    double E = 0;
+    for (int i = 0; i < n; i++) {
+        E += values[i] * probabilities[i];
+    }
+    return E;
+}
+
+double variance(double *values, double *probabilities, int n) {
+    double E = expected_value(values, probabilities, n);
+    double Var = 0;
+    for (int i = 0; i < n; i++) {
+        Var += probabilities[i] * pow(values[i] - E, 2);
+    }
+    return Var;
+}
+    </code></pre>
+</div>
+
+<div class="section" id="section24">
+    <h2>24. Optimization Techniques</h2>
+    <h3>Basic Introduction</h3>
+    <p>Optimization algorithms are used to minimize the loss function in machine learning models.</p>
+
+    <h3>Key Concepts</h3>
+    <p>- Gradient Descent: w = w - η∇L</p>
+    <p>- Stochastic Gradient Descent (SGD)</p>
+    <p>- Adam Optimizer</p>
+
+    <h3>Advanced Explanation</h3>
+    <p>Advanced optimization techniques like Adam combine ideas from momentum and adaptive learning rates to efficiently train deep neural networks.</p>
+
+    <h3>C Implementation (simple SGD)</h3>
+    <pre><code>
+void sgd(double *w, double *x, double y, double learning_rate, int features) {
+    double prediction = 0;
+    for (int i = 0; i < features; i++) {
+        prediction += w[i] * x[i];
+    }
+    double error = prediction - y;
+    for (int i = 0; i < features; i++) {
+        w[i] -= learning_rate * error * x[i];
+    }
+}
+    </code></pre>
+</div>
+
+    <script>
+        // JavaScript to toggle the navigation menu
+        var menuButton = document.getElementById('menuButton');
+        var navMenu = document.getElementById('navMenu');
+        menuButton.addEventListener('click', function() {
+            var isShown = navMenu.classList.contains('show');
+            navMenu.classList.toggle('show', !isShown);
+        });
+    </script>
+
+<hr>
+<p>
+**This project is not a professional educational tool.** It was created for personal learning and experimentation with mathematical notation and calculus. While the content aims to be accurate and useful, it is not guaranteed to be error-free or comprehensive. Use it at your own risk, and please verify any mathematical or coding implementations independently.
+</p>
+<p>
+For any questions or additional information, you can reach out via alberrod.dev@gmail.com
+</p>
+
+</body>
+</html>
